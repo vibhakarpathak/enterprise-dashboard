@@ -9,7 +9,7 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 module.exports = {
-  displayName: '@enterprise/tokens',
+  displayName: '@enterprise/ui',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
