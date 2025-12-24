@@ -1,9 +1,4 @@
-export const lightTheme = {
-  "--color-primary": "#2563eb",
-  "--color-surface": "#ffffff",
-  "--color-text": "#0f172a",
-  "--color-border": "#e5e7eb",
-
+export const commonTheme = {
   "--space-xs": "4px",
   "--space-sm": "8px",
   "--space-md": "16px",
@@ -13,7 +8,16 @@ export const lightTheme = {
   "--radius-md": "10px"
 };
 
+export const lightTheme = {
+  ...commonTheme,
+  "--color-primary": "#2563eb",
+  "--color-surface": "#ffffff",
+  "--color-text": "#0f172a",
+  "--color-border": "#e5e7eb"  
+};
+
 export const darkTheme = {
+  ...commonTheme,
   "--color-primary": "#60a5fa",
   "--color-surface": "#020617",
   "--color-text": "#e5e7eb",
