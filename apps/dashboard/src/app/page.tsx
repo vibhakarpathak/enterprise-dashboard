@@ -1,5 +1,6 @@
 'use client';
 
+import { Button, Card } from '@enterprise/ui';
 import { ThemeToggle } from './components/ThemeToggle';
 
 export default function Index() {
@@ -44,6 +45,36 @@ export default function Index() {
             across your enterprise libraries.
           </p>
         </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
+          {/* Test Card & Primary Button */}
+          <Card>
+            <Card.Header>System Status</Card.Header>
+            <Card.Body>
+              <p className="text-sm text-muted mb-md">
+                Your enterprise dashboard is connected to the UI package.
+              </p>
+              <Button variant="primary" size="md">
+                Refresh Analytics
+              </Button>
+            </Card.Body>
+          </Card>
+
+          {/* Test Ghost Button & Compound Pattern */}
+          <Card>
+            <Card.Header>UI Component Library</Card.Header>
+            <Card.Body>
+              <div className="flex gap-sm">
+                <Button variant="ghost" size="sm">
+                  View Docs
+                </Button>
+                <Button variant="primary" size="sm">
+                  Deploy Now
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
 
         {/* 3. Stat Grid with Glassmorphism */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -21,7 +21,7 @@
     },
     "types": ["jest", "node"],
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": "../../",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
   },
   "include": [
@@ -29,9 +29,6 @@
     "src/**/*.tsx",
     "src/**/*.js",
     "src/**/*.jsx",
-    "../../apps/dashboard/.next/types/**/*.ts",
-    "../../dist/apps/dashboard/.next/types/**/*.ts",
-    "next-env.d.ts"
   ],
   "exclude": [
     "out-tsc",
@@ -49,6 +46,9 @@
   "references": [
     {
       "path": "../packages/tokens"
+    },
+    {
+      "path": "../packages/ui"
     }
   ]
 }
