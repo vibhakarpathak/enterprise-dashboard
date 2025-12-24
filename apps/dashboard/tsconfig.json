@@ -45,6 +45,9 @@
   ],
   "references": [
     {
+      "path": "../packages/api"
+    },
+    {
       "path": "../packages/hooks"
     },
     {
