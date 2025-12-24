@@ -1,16 +1,52 @@
 'use client';
 
+import { useRef, useState } from 'react';
+
+import {
+  useDebounce,
+  useStableCallback,
+  useVirtualList,
+} from '@enterprise/hooks';
 import { Button, Card } from '@enterprise/ui';
 import { ThemeToggle } from './components/ThemeToggle';
 
 export default function Index() {
+  const [search, setSearch] = useState('');
+  const debouncedSearch = useDebounce(search, 400);
+
+  const [scrollTop, setScrollTop] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const ITEM_HEIGHT = 50;
+  const CONTAINER_HEIGHT = 400;
+  const TOTAL_ITEMS = 10000;
+
+  const allItems = Array.from(
+    { length: TOTAL_ITEMS },
+    (_, i) => `Item ${i + 1}`,
+  );
+
+  const filteredItems = allItems.filter((item) =>
+    item.toLowerCase().includes(debouncedSearch.toLowerCase()),
+  );
+
+  const { startIndex, endIndex, offsetY } = useVirtualList({
+    itemHeight: ITEM_HEIGHT,
+    containerHeight: CONTAINER_HEIGHT,
+    itemCount: filteredItems.length,
+    scrollTop,
+  });
+
+  const handleScroll = useStableCallback((e: React.UIEvent<HTMLDivElement>) => {
+    setScrollTop(e.currentTarget.scrollTop);
+  });
+
+  const visibleItems = filteredItems.slice(startIndex, endIndex + 1);
+
   return (
     <div className="min-h-screen bg-surface text-text selection:bg-primary/30 transition-colors duration-500">
-      {/* 1. Sleek Navigation */}
       <nav className="sticky top-0 z-50 w-full border-b border-border bg-surface/80 backdrop-blur-md">
-        {/* Use a container with a max-width that matches your main content */}
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* Brand/Logo Section */}
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">
               E
@@ -20,7 +56,6 @@ export default function Index() {
             </span>
           </div>
 
-          {/* THE FIX: Wrap the toggle in a div to control its specific alignment */}
           <div className="flex items-center h-full pt-1">
             <ThemeToggle />
           </div>
@@ -28,7 +63,6 @@ export default function Index() {
       </nav>
 
       <main className="max-w-6xl mx-auto p-8 lg:p-12 space-y-12">
-        {/* 2. Enhanced Header */}
         <header className="space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
             System Active
@@ -46,8 +80,61 @@ export default function Index() {
           </p>
         </header>
 
+        <Card>
+          <Card.Header>Search</Card.Header>
+          <Card.Body>
+            <input
+              className="border border-border p-sm w-full"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <p className="mt-sm text-sm">Debounced value: {debouncedSearch}</p>
+          </Card.Body>
+        </Card>
+
+        <Card>
+          <Card.Header>Search & Virtual List</Card.Header>
+          <Card.Body>
+            <input
+              className="border border-border p-sm w-full rounded-md bg-surface text-text"
+              placeholder="Search 10,000 items..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <p className="mt-sm text-sm text-text opacity-70">
+              Showing visible range: {startIndex} - {endIndex} (Total filtered:{' '}
+              {filteredItems.length})
+            </p>
+          </Card.Body>
+        </Card>
+
+        <div
+          ref={containerRef}
+          onScroll={handleScroll}
+          className="border border-border rounded-md overflow-auto bg-surface"
+          style={{ height: CONTAINER_HEIGHT, position: 'relative' }}
+        >
+          <div
+            style={{
+              height: filteredItems.length * ITEM_HEIGHT,
+              width: '100%',
+            }}
+          >
+            <div style={{ transform: `translateY(${offsetY}px)` }}>
+              {visibleItems.map((item, index) => (
+                <div
+                  key={startIndex + index}
+                  className="border-b border-border px-md flex items-center text-text"
+                  style={{ height: ITEM_HEIGHT }}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-md">
-          {/* Test Card & Primary Button */}
           <Card>
             <Card.Header>System Status</Card.Header>
             <Card.Body>
@@ -60,7 +147,6 @@ export default function Index() {
             </Card.Body>
           </Card>
 
-          {/* Test Ghost Button & Compound Pattern */}
           <Card>
             <Card.Header>UI Component Library</Card.Header>
             <Card.Body>
@@ -76,7 +162,6 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* 3. Stat Grid with Glassmorphism */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StatCard title="Active Projects" value="12" sub="+2 this week" />
           <StatCard
@@ -88,9 +173,7 @@ export default function Index() {
           <StatCard title="Total Deploys" value="248" sub="+18 today" />
         </div>
 
-        {/* 4. Content Sections */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Activity Feed (Wider) */}
           <section className="lg:col-span-8 bg-surface border border-border rounded-3xl p-8 shadow-sm">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-2xl font-bold">Recent Activity</h2>
@@ -108,7 +191,8 @@ export default function Index() {
                   <div className="mt-1 w-2 h-2 rounded-full bg-primary group-hover:scale-150 transition-transform" />
                   <div className="flex-1">
                     <p className="font-semibold group-hover:text-primary transition-colors">
-                      Updated @enterprise/tokens to v2.4.0
+                      Updated @enterprise/hooks, @enterprise/tokens,
+                      @enterprise/ui
                     </p>
                     <p className="text-sm text-text/40">
                       CI/CD Pipeline • 2 hours ago
@@ -122,7 +206,6 @@ export default function Index() {
             </div>
           </section>
 
-          {/* Quick Actions (Compact) */}
           <section className="lg:col-span-4 space-y-4">
             <h2 className="text-2xl font-bold px-2">Quick Actions</h2>
             <div className="grid grid-cols-1 gap-3">
@@ -137,8 +220,6 @@ export default function Index() {
     </div>
   );
 }
-
-// --- Visual Helpers ---
 
 function StatCard({
   title,

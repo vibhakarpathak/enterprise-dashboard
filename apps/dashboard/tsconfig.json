@@ -45,6 +45,9 @@
   ],
   "references": [
     {
+      "path": "../packages/hooks"
+    },
+    {
       "path": "../packages/tokens"
     },
     {
