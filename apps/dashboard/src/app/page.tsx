@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 
+import { useGetRevenueWidgetQuery } from '@enterprise/api';
 import {
   useDebounce,
   useStableCallback,
@@ -11,6 +12,8 @@ import { Button, Card } from '@enterprise/ui';
 import { ThemeToggle } from './components/ThemeToggle';
 
 export default function Index() {
+  const { data, isLoading } = useGetRevenueWidgetQuery();
+
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search, 400);
 
@@ -81,14 +84,30 @@ export default function Index() {
         </header>
 
         <Card>
-          <Card.Header>Search</Card.Header>
+          <Card.Header>Revenue</Card.Header>
           <Card.Body>
-            <input
-              className="border border-border p-sm w-full"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <p className="mt-sm text-sm">Debounced value: {debouncedSearch}</p>
+            {isLoading ? (
+              <div className="animate-pulse space-y-3">
+                <div className="h-8 w-32 bg-slate-200 dark:bg-slate-700 rounded" />
+                <div className="h-4 w-24 bg-slate-200 dark:bg-slate-700 rounded" />
+              </div>
+            ) : (
+              <>
+                <p className="text-2xl font-bold text-text">
+                  ₹{data?.value?.toLocaleString('en-IN')}
+                </p>
+                <p className="text-sm text-text opacity-70 flex items-center gap-1">
+                  Trend:
+                  <span
+                    className={
+                      data?.trend === 'up' ? 'text-green-500' : 'text-red-500'
+                    }
+                  >
+                    {data?.trend === 'up' ? '↑' : '↓'} {data?.trend}
+                  </span>
+                </p>
+              </>
+            )}
           </Card.Body>
         </Card>
 
@@ -96,6 +115,7 @@ export default function Index() {
           <Card.Header>Search & Virtual List</Card.Header>
           <Card.Body>
             <input
+              
               className="border border-border p-sm w-full rounded-md bg-surface text-text"
               placeholder="Search 10,000 items..."
               value={search}
@@ -141,7 +161,7 @@ export default function Index() {
               <p className="text-sm text-muted mb-md">
                 Your enterprise dashboard is connected to the UI package.
               </p>
-              <Button variant="primary" size="md">
+              <Button variant="primary" size="md" >
                 Refresh Analytics
               </Button>
             </Card.Body>
@@ -151,10 +171,10 @@ export default function Index() {
             <Card.Header>UI Component Library</Card.Header>
             <Card.Body>
               <div className="flex gap-sm">
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="sm" >
                   View Docs
                 </Button>
-                <Button variant="primary" size="sm">
+                <Button variant="primary" size="sm" >
                   Deploy Now
                 </Button>
               </div>
@@ -177,7 +197,10 @@ export default function Index() {
           <section className="lg:col-span-8 bg-surface border border-border rounded-3xl p-8 shadow-sm">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-2xl font-bold">Recent Activity</h2>
-              <button className="text-sm font-semibold text-primary hover:opacity-80 transition-opacity">
+              <button
+                
+                className="text-sm font-semibold text-primary hover:opacity-80 transition-opacity"
+              >
                 Full Logs →
               </button>
             </div>
@@ -250,7 +273,10 @@ function StatCard({
 
 function QuickAction({ label, color }: { label: string; color: string }) {
   return (
-    <button className="w-full flex items-center justify-between p-5 bg-surface border border-border rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all shadow-sm hover:shadow-md group">
+    <button
+      
+      className="w-full flex items-center justify-between p-5 bg-surface border border-border rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all shadow-sm hover:shadow-md group"
+    >
       <div className="flex items-center gap-4">
         <div
           className={`w-3 h-3 rounded-full ${color} shadow-[0_0_10px_rgba(0,0,0,0.1)]`}

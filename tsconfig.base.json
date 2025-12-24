@@ -21,6 +21,7 @@
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
+      "@enterprise/api": ["./apps/packages/api/src/index.ts"],
       "@enterprise/hooks": ["./apps/packages/hooks/src/index.ts"],
       "@enterprise/tokens": ["./apps/packages/tokens/src/index.ts"],
       "@enterprise/ui": ["./apps/packages/ui/src/index.ts"]      
