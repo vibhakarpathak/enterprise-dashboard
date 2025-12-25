@@ -1,11 +1,13 @@
-# api
+# @enterprise/api
 
-This library was generated with [Nx](https://nx.dev).
+RTK Query API client for **EnterpriseOS**.
 
-## Building
+## Features
 
-Run `nx build api` to build the library.
+- `useGetRevenueWidgetQuery` – Fetch dashboard revenue data
 
-## Running unit tests
+## Usage
 
-Run `nx test api` to execute the unit tests via [Jest](https://jestjs.io).
+```ts
+import { useGetRevenueWidgetQuery } from '@enterprise/api';
+```

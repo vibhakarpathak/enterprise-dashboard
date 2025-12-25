@@ -1,2 +1,2 @@
-export * from './lib/baseApi';
-export * from './lib/dashboardApi';
+export * from "./core";
+export * from "./features/dashboard";

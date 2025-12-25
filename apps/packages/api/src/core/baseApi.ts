@@ -4,8 +4,8 @@ export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "/api",
-    credentials: "include"
+    credentials: "include",
   }),
   tagTypes: ["Dashboard", "Widget"],
-  endpoints: () => ({})
+  endpoints: () => ({}),
 });
