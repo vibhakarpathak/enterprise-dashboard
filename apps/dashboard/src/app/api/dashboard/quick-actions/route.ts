@@ -8,7 +8,7 @@ export interface QuickActionData {
 }
 
 export async function GET() {
-  await delay(7000);
+  await delay(100);
 
   const actions: QuickActionData[] = [
     { label: 'Create New App', color: 'bg-blue-500' },

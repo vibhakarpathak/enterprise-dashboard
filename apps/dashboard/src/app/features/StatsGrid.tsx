@@ -22,11 +22,20 @@ export function StatsGrid() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {isLoading
-        ? // Render 3 skeletons to match the expected grid
-          Array.from({ length: 3 }).map((_, i) => <StatCard.Skeleton key={i} />)
-        : stats.map((stat, i) => <StatCard key={i} {...stat} />)}
+    <div
+      className="grid grid-cols-1 md:grid-cols-3 gap-6"
+      aria-busy={isLoading}
+    >
+      {isLoading ? (
+        <>
+          <span className="sr-only">Loading dashboard statistics...</span>
+          {Array.from({ length: 3 }).map((_, i) => (
+            <StatCard.Skeleton key={i} />
+          ))}
+        </>
+      ) : (
+        stats.map((stat, i) => <StatCard key={i} {...stat} />)
+      )}
     </div>
   );
 }

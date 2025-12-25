@@ -10,7 +10,7 @@ export interface StatData {
 }
 
 export async function GET() {
-  await delay(12000);
+  await delay(100);
 
   const stats: StatData[] = [
     { title: 'Active Projects', value: '12', sub: '+2 this week' },

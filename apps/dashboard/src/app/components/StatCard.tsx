@@ -10,15 +10,20 @@ interface StatCardProps {
 export function StatCard({ title, value, sub, status }: StatCardProps) {
   return (
     <Card>
-      <Card.Header>
-        <span className="text-sm font-medium text-muted-foreground/60 uppercase tracking-wider">
-          {title}
-        </span>
+      <Card.Header
+        as="div"
+        className="text-sm font-medium text-muted-foreground/90 uppercase tracking-wider"
+      >
+        {title}
       </Card.Header>
       <Card.Body>
-        <h3 className="text-4xl font-black mt-2 text-[var(--color-text)]">
+        <div
+          className="text-4xl font-black mt-2 text-[var(--color-text)]"
+          role="text"
+          aria-label={`${title}: ${value}`}
+        >
           {value}
-        </h3>
+        </div>
         <p
           className={cn(
             'text-sm mt-4 font-bold uppercase tracking-tight',

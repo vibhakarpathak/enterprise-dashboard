@@ -1,3 +1,4 @@
+// Card.tsx
 import { cn } from '../../utils/cn';
 import type { CardProps, CardHeaderProps, CardBodyProps } from './Card.props';
 
@@ -14,10 +15,16 @@ function CardRoot({ children, className }: CardProps) {
   );
 }
 
-function CardHeader({ children, className }: CardHeaderProps) {
+function CardHeader({
+  children,
+  className,
+  as = 'h3',
+}: CardHeaderProps & { as?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' }) {
+  const Tag = as;
+
   return (
     <div className={cn('px-6 py-4 border-b border-border', className)}>
-      <h3 className="text-lg font-semibold">{children}</h3>
+      <Tag className="text-lg font-semibold">{children}</Tag>
     </div>
   );
 }

@@ -64,7 +64,7 @@ export function DashboardHero() {
       </h1>
 
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 max-w-5xl">
-        <div className="max-w-xl text-lg leading-snug text-muted-foreground/60">
+        <div className="max-w-xl text-lg leading-snug text-muted-foreground/80">
           <p>
             System health is at{' '}
             <span className="font-bold text-[var(--color-text)]">99.9%</span>.
@@ -81,10 +81,13 @@ export function DashboardHero() {
           size="sm"
           disabled={isLoading}
           onClick={handleLaunch}
+          aria-busy={isLoading}
+          aria-live="polite"
           className={cn(
-            'rounded-2xl font-bold px-10 h-14 transition-all flex items-center gap-3',
-            'shadow-lg shadow-[var(--color-primary)]/20 active:scale-95',
-            isLoading && 'opacity-80 cursor-not-allowed',
+            'rounded-2xl font-bold px-10 h-14 transition-all flex items-center gap-3 text-white',
+            'bg-blue-700 hover:bg-blue-800',
+            'shadow-lg shadow-blue-700/20 active:scale-95',
+            isLoading && 'opacity-50 cursor-not-allowed',
           )}
         >
           {isLoading ? (
