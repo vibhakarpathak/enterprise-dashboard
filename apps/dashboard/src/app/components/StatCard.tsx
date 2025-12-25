@@ -9,23 +9,27 @@ interface StatCardProps {
 
 export function StatCard({ title, value, sub, status }: StatCardProps) {
   return (
-    <Card className="p-6">
-      <span className="text-sm font-medium text-muted-foreground/60 uppercase tracking-wider">
-        {title}
-      </span>
-      <h3 className="text-4xl font-black mt-2 text-[var(--color-text)]">
-        {value}
-      </h3>
-      <p
-        className={cn(
-          'text-sm mt-4 font-bold uppercase tracking-tight',
-          status === 'green'
-            ? 'text-emerald-500'
-            : 'text-[var(--color-primary)]',
-        )}
-      >
-        {sub}
-      </p>
+    <Card>
+      <Card.Header>
+        <span className="text-sm font-medium text-muted-foreground/60 uppercase tracking-wider">
+          {title}
+        </span>
+      </Card.Header>
+      <Card.Body>
+        <h3 className="text-4xl font-black mt-2 text-[var(--color-text)]">
+          {value}
+        </h3>
+        <p
+          className={cn(
+            'text-sm mt-4 font-bold uppercase tracking-tight',
+            status === 'green'
+              ? 'text-emerald-500'
+              : 'text-[var(--color-primary)]',
+          )}
+        >
+          {sub}
+        </p>
+      </Card.Body>
     </Card>
   );
 }

@@ -25,20 +25,29 @@ const CONTAINER_HEIGHT = 600;
 
 export function Activity() {
   const [activities, setActivities] = useState<ActivityLog[]>([]);
-  const [isLoading, setIsLoading] = useState(true); // 1. Added loading state
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [scrollTop, setScrollTop] = useState(0);
   const debouncedSearch = useDebounce(searchTerm, 300);
 
-  useEffect(() => {
+  // Reusable refresh logic
+  const refreshData = useStableCallback(async () => {
     setIsLoading(true);
-    fetch('/api/dashboard/activity')
-      .then((res) => res.json())
-      .then((data: ActivityLog[]) => {
-        setActivities(data);
-      })
-      .finally(() => setIsLoading(false)); // 2. Stop loading
-  }, []);
+    try {
+      const res = await fetch('/api/dashboard/activity');
+      const data: ActivityLog[] = await res.json();
+      setActivities(data);
+    } catch (error) {
+      console.error('Failed to fetch activity logs:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  });
+
+  // Initial mount load
+  useEffect(() => {
+    refreshData();
+  }, [refreshData]);
 
   const filtered = useMemo(
     () =>
@@ -68,10 +77,10 @@ export function Activity() {
         to={isLoading ? 0 : Math.min(filtered.length, virtual.endIndex + 1)}
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
+        onRefresh={refreshData} // Now passes the function to handle clicks
       />
 
       {isLoading ? (
-        // 3. Render Skeleton List
         <div className="space-y-0">
           {Array.from({ length: 6 }).map((_, i) => (
             <div
