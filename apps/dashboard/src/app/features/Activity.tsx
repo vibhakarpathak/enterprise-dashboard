@@ -54,7 +54,9 @@ export function Activity() {
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    const worker = new Worker('/workers/filter.worker.js');
+    const worker = new Worker(
+      new URL('../workers/filter.worker.ts', import.meta.url),
+    );
 
     workerRef.current = worker;
 
