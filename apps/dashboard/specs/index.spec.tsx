@@ -1,7 +1,6 @@
-// specs/index.spec.tsx
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from '../src/app/store'; // Adjust path to your store
+import { store } from '../src/app/store';
 import Page from '../src/app/page';
 
 describe('Page', () => {

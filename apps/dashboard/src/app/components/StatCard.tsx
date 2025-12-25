@@ -1,4 +1,4 @@
-import { cn } from '@enterprise/ui';
+import { Card, cn } from '@enterprise/ui';
 
 interface StatCardProps {
   title: string;
@@ -9,20 +9,44 @@ interface StatCardProps {
 
 export function StatCard({ title, value, sub, status }: StatCardProps) {
   return (
-    <div className="relative overflow-hidden group bg-surface border border-border p-8 rounded-3xl hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-xl">
-      <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-8 -mt-8 group-hover:bg-primary/10 transition-colors" />
-      <p className="text-sm font-bold text-text/40 uppercase tracking-widest">
+    <Card className="p-6">
+      <span className="text-sm font-medium text-muted-foreground/60 uppercase tracking-wider">
         {title}
-      </p>
-      <h3 className="text-4xl font-black mt-2">{value}</h3>
+      </span>
+      <h3 className="text-4xl font-black mt-2 text-[var(--color-text)]">
+        {value}
+      </h3>
       <p
         className={cn(
-          'text-sm mt-4 font-medium',
-          status === 'green' ? 'text-emerald-500' : 'text-primary',
+          'text-sm mt-4 font-bold uppercase tracking-tight',
+          status === 'green'
+            ? 'text-emerald-500'
+            : 'text-[var(--color-primary)]',
         )}
       >
         {sub}
       </p>
-    </div>
+    </Card>
   );
 }
+
+StatCard.Skeleton = function StatCardSkeleton() {
+  return (
+    <Card className="p-6 bg-[var(--color-text)]/[0.02] border-[var(--color-border)]/40">
+      {/* Title Placeholder */}
+      <div className="h-3 bg-[var(--color-text)] opacity-[0.15] rounded w-1/3 animate-pulse" />
+
+      {/* Value Placeholder */}
+      <div
+        className="h-10 bg-[var(--color-text)] opacity-[0.1] rounded-lg w-1/2 mt-3 animate-pulse"
+        style={{ animationDelay: '0.1s' }}
+      />
+
+      {/* Subtext Placeholder */}
+      <div
+        className="h-3 bg-[var(--color-text)] opacity-[0.08] rounded w-1/4 mt-5 animate-pulse"
+        style={{ animationDelay: '0.2s' }}
+      />
+    </Card>
+  );
+};
