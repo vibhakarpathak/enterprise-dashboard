@@ -12,7 +12,7 @@ export interface ActivityLog {
 }
 
 export async function GET() {
-  await delay(5000);
+  // await delay(5000);
   const activities: ActivityLog[] = Array.from({ length: 10000 }).map(
     (_, i) => ({
       id: `log-${i}`,
