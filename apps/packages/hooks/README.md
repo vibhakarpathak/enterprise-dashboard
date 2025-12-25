@@ -1,11 +1,15 @@
-# hooks
+# @enterprise/hooks
 
-This library was generated with [Nx](https://nx.dev).
+Reusable custom React hooks for **EnterpriseOS**.
 
-## Building
+## Hooks
 
-Run `nx build hooks` to build the library.
+- `useDebounce` – Debounce rapidly changing values
+- `useStableCallback` – Prevent unnecessary re-renders with stable callbacks
+- `useVirtualList` – Efficient virtualization for large lists
 
-## Running unit tests
+## Usage
 
-Run `nx test hooks` to execute the unit tests via [Jest](https://jestjs.io).
+```tsx
+import { useDebounce, useVirtualList } from '@enterprise/hooks';
+```
