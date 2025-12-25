@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 
 import { useGetRevenueWidgetQuery } from '@enterprise/api';
 import {
@@ -8,8 +9,16 @@ import {
   useStableCallback,
   useVirtualList,
 } from '@enterprise/hooks';
-import { Button, Card } from '@enterprise/ui';
 import { ThemeToggle } from './components/ThemeToggle';
+
+const Button = dynamic(() => import('@enterprise/ui').then((mod) => mod.Button));
+const Card = Object.assign(
+  dynamic(() => import('@enterprise/ui').then((mod) => mod.Card)),
+  {
+    Header: dynamic(() => import('@enterprise/ui').then((mod) => mod.Card.Header)),
+    Body: dynamic(() => import('@enterprise/ui').then((mod) => mod.Card.Body)),
+  }
+);
 
 export default function Index() {
   const { data, isLoading } = useGetRevenueWidgetQuery();
