@@ -24,12 +24,7 @@
     "rootDir": "../../",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.js",
-    "src/**/*.jsx",
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"],
   "exclude": [
     "out-tsc",
     "dist",
@@ -45,13 +40,10 @@
   ],
   "references": [
     {
-      "path": "../packages/api"
-    },
-    {
       "path": "../packages/hooks"
     },
     {
-      "path": "../packages/tokens"
+      "path": "../packages/api"
     },
     {
       "path": "../packages/ui"
