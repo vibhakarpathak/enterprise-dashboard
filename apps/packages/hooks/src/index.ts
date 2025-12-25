@@ -1,3 +1,3 @@
-export * from "./lib/useDebounce";
-export * from "./lib/useVirtualList";
-export * from "./lib/useStableCallback";
+export { useDebounce } from './useDebounce';
+export { useStableCallback } from './useStableCallback';
+export { useVirtualList } from './useVirtualList';

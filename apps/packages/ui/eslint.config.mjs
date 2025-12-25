@@ -1,9 +1,13 @@
 import baseConfig from '../../../eslint.config.mjs';
+import jsoncParser from 'jsonc-eslint-parser';
 
 export default [
   ...baseConfig,
   {
-    files: ['**/*.json'],
+    files: ['**/*.json', '**/*.jsonc', '**/*.json5'],
+    languageOptions: {
+      parser: jsoncParser,
+    },
     rules: {
       '@nx/dependency-checks': [
         'error',
@@ -15,11 +19,9 @@ export default [
         },
       ],
     },
-    languageOptions: {
-      parser: await import('jsonc-eslint-parser'),
-    },
   },
+
   {
-    ignores: ['**/out-tsc', 'storybook-static'],
+    ignores: ['**/out-tsc', 'storybook-static', 'dist', 'coverage'],
   },
 ];

@@ -5,13 +5,16 @@
 @layer base {
   html {
     @apply scroll-smooth;
-    /* Use your theme tokens by default */
     background-color: var(--color-surface);
     color: var(--color-text);
   }
 
   body {
     @apply antialiased;
-    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-family:
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 }

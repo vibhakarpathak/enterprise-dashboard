@@ -1,3 +1,8 @@
-export * from './lib/tokens';
-export * from './lib/themes';
-export * from './lib/applyTheme';
+// Primitives (raw values)
+export * from './primitives';
+
+// Semantic tokens
+export * from './semantic';
+
+// Themes & utilities
+export * from './themes';

@@ -1,11 +1,33 @@
-# ui
+# @enterprise/ui
 
-This library was generated with [Nx](https://nx.dev).
+Enterprise-grade React component library for **EnterpriseOS**, built with:
 
-## Building
+- Tailwind CSS
+- Atomic Design principles
+- TypeScript
+- Storybook
+- Full accessibility & testing support
 
-Run `nx build ui` to build the library.
+## Components
 
-## Running unit tests
+- `Button` – Fully styled, variant-driven button
+- `Card` – Flexible card with Header/Body subcomponents
 
-Run `nx test ui` to execute the unit tests via [Jest](https://jestjs.io).
+## Installation
+
+Already available in monorepo.
+
+## Usage
+
+```tsx
+import { Button, Card } from '@enterprise/ui';
+
+<Button variant="ghost" size="sm">
+  Click me
+</Button>
+
+<Card>
+  <Card.Header>Title</Card.Header>
+  <Card.Body>Content</Card.Body>
+</Card>
+```

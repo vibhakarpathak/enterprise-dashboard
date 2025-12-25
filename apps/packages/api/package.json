@@ -3,20 +3,29 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "description": "RTK Query API client for EnterpriseOS",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
   "types": "./dist/index.d.ts",
   "exports": {
-    "./package.json": "./package.json",
     ".": {
       "@dashboard/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    }
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "*",
+    "@reduxjs/toolkit": "^2.0.0",
     "tslib": "^2.3.0"
-  }
+  },
+  "devDependencies": {
+    "react-redux": "^9.0.0",
+    "@testing-library/react": "^15.0.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "jest": "^29.0.0"
+  },
+  "peerDependencies": {}
 }

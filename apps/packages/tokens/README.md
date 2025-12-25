@@ -1,11 +1,20 @@
-# tokens
+# @enterprise/tokens
 
-This library was generated with [Nx](https://nx.dev).
+Design tokens and theme system for **EnterpriseOS**.
 
-## Building
+This package provides:
+- Primitive design tokens (colors, spacing, radii, etc.)
+- Semantic aliases for consistent meaning across themes
+- Ready-to-use light and dark themes
+- Utility to apply themes via CSS variables
 
-Run `nx build tokens` to build the library.
+Built with scalability in mind using an atomic-inspired structure.
 
-## Running unit tests
+## Installation
 
-Run `nx test tokens` to execute the unit tests via [Jest](https://jestjs.io).
+Already available in the monorepo. For external use (if published):
+
+```bash
+npm install @enterprise/tokens
+# or
+yarn add @enterprise/tokens
