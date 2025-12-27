@@ -1,9 +1,9 @@
 const { composePlugins, withNx } = require('@nx/next');
 
 const nextConfig = {
-  nx: { svgr: true }, // Enable SVGR since we fixed your SVG types earlier
+  nx: { svgr: true },
   experimental: {
-    typedRoutes: true, // Matches the fix in your tsconfig
+    typedRoutes: true,
   },
   reactStrictMode: true,
 };

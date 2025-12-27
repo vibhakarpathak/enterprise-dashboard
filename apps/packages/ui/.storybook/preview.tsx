@@ -1,32 +1,36 @@
-import React, { useEffect } from 'react'; // Ensure React is imported
-import { darkTheme, lightTheme, applyTheme } from "@enterprise/tokens";
-import type { Decorator } from "@storybook/react";
+import React, { useEffect } from 'react';
+import { darkTheme, lightTheme, applyTheme } from '@enterprise/tokens';
+import type { Decorator, StoryContext } from '@storybook/react'; // Import StoryContext
 import '../src/globals.css';
 
 export const globalTypes = {
   theme: {
-    name: "Theme",
-    defaultValue: "dark",
+    name: 'Theme',
+    defaultValue: 'dark',
     toolbar: {
-      icon: "circlehollow",
-      items: ["light", "dark"]
-    }
-  }
+      icon: 'circlehollow',
+      items: ['light', 'dark'],
+    },
+  },
 };
 
 export const decorators: Decorator[] = [
-  (Story, context) => {
+  (Story: React.ComponentType, context: StoryContext) => {
+    // Explicitly type Story and context
     const themeName = context.globals.theme;
-    const themeTokens = themeName === "dark" ? darkTheme : lightTheme;
+    const themeTokens = themeName === 'dark' ? darkTheme : lightTheme;
 
     useEffect(() => {
+      document.documentElement.className = themeName;
       applyTheme(themeTokens);
-    }, [themeTokens]);
+    }, [themeTokens, themeName]);
 
     return (
-      <div className={`${themeName} min-h-screen p-4 bg-surface text-text`}> 
-        <Story />
+      <div className={`${themeName} antialiased min-h-screen w-full p-8 bg-surface text-text`}>
+        <div className="mx-auto max-w-4xl">
+          <Story />
+        </div>
       </div>
     );
-  }
+  },
 ];
