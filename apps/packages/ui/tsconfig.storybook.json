@@ -3,12 +3,15 @@
   "compilerOptions": {
     "outDir": "out-tsc/storybook",
 
-    "composite": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+
+    "composite": false,
 
     "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "preserve",
-    "rootDir": "."
+    "rootDir": "../../../"
   },
   "exclude": ["src/**/*.spec.*", "src/**/*.test.*"],
   "include": [
