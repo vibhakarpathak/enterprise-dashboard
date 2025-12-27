@@ -1,24 +1,24 @@
 {
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "rootDir": "src",
     "outDir": "dist",
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
-    "emitDeclarationOnly": true,
-    "module": "es2020",
-    "moduleResolution": "bundler",
-    "types": ["node"]
+
+    "composite": true,
+
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false,
+
+    "module": "esnext",
+    "moduleResolution": "bundler"
   },
   "references": [
     {
       "path": "../tokens/tsconfig.lib.json"
     }
   ],
-  "exclude": [
-    "**/*.stories.ts",
-    "**/*.stories.js",
-    "**/*.stories.jsx",
-    "**/*.stories.tsx"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["**/*.stories.*", "**/*.spec.*", "**/*.test.*"]
 }

@@ -9,12 +9,18 @@ export default [
     languageOptions: {
       parser: jsoncParser,
     },
+  },
+
+  {
+    files: ['**/*.ts'],
     rules: {
-      '@nx/dependency-checks': [
+      // Tokens must stay pure
+      'no-restricted-imports': [
         'error',
         {
-          ignoredFiles: [
-            '{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}',
+          paths: [
+            { name: 'react', message: 'Tokens must not depend on React' },
+            { name: 'react-dom', message: 'Tokens must not depend on DOM' },
           ],
         },
       ],
@@ -22,6 +28,6 @@ export default [
   },
 
   {
-    ignores: ['**/out-tsc', 'dist', 'coverage'],
+    ignores: ['dist', 'out-tsc', 'coverage'],
   },
 ];

@@ -1,30 +1,36 @@
 {
   "jsc": {
-    "target": "es2017",
+    "target": "es2022",
     "parser": {
       "syntax": "typescript",
+      "tsx": true,
       "decorators": true,
       "dynamicImport": true
     },
     "transform": {
+      "react": {
+        "runtime": "automatic",
+        "throwIfNamespace": true,
+        "importSource": "react",
+        "development": false
+      },
       "decoratorMetadata": true,
       "legacyDecorator": true
     },
     "keepClassNames": true,
     "externalHelpers": true,
-    "loose": true
+    "loose": false
   },
   "module": {
-    "type": "commonjs"
+    "type": "es6",
+    "noInterop": false
   },
   "sourceMaps": true,
   "exclude": [
     "jest.config.[ct]s",
-    ".*\\.spec.tsx?$",
-    ".*\\.test.tsx?$",
-    "./src/jest-setup.ts$",
-    "./**/jest-setup.ts$",
-    ".*.js$",
-    ".*.d.ts$"
+    "src/**/*.spec.[jt]sx?$",
+    "src/**/*.test.[jt]sx?$",
+    "./src/jest-setup.[jt]s$",
+    "**/node_modules/**"
   ]
 }

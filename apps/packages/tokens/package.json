@@ -3,14 +3,15 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "description": "EnterpriseOS design tokens and theme system",
+  "description": "Enterprise design tokens and theme primitives",
   "license": "MIT",
   "sideEffects": false,
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "@dashboard/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },

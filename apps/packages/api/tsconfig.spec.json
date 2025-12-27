@@ -3,19 +3,13 @@
   "compilerOptions": {
     "outDir": "./out-tsc/jest",
     "types": ["jest", "node"],
-    "module": "es2020",
-    "moduleResolution": "bundler"
+
+    "module": "esnext",
+    "moduleResolution": "bundler",
+
+    "isolatedModules": true,
+    "composite": true
   },
-  "include": [
-    "jest.config.ts",
-    "jest.config.cts",
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    }
-  ]
+  "include": ["jest.config.cts", "src/**/*.test.ts", "src/**/*.spec.ts", "src/**/*.d.ts"],
+  "references": [{ "path": "./tsconfig.lib.json" }]
 }

@@ -1,27 +1,24 @@
 const nextJest = require('next/jest.js');
 
 const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files
   dir: './',
 });
 
-const config = {
+const customJestConfig = {
   displayName: '@dashboard/dashboard',
   preset: '../../jest.preset.js',
+  testEnvironment: 'jest-environment-jsdom',
   transform: {
+    // Let SWC handle TS/JSX (via next/jest), use Nx for the rest
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/apps/dashboard',
-  testEnvironment: 'jsdom',
-  moduleNameMapper: {
-    // Map the main entry points
-    '^react$': require.resolve('react'),
-    '^react-dom$': require.resolve('react-dom'),
-
-    // Map the JSX runtimes (this is likely where 'ReactCurrentDispatcher' is failing)
-    '^react/jsx-runtime$': require.resolve('react/jsx-runtime'),
-    '^react/jsx-dev-runtime$': require.resolve('react/jsx-dev-runtime'),
-  },
+  // Removed manual react mappings—next/jest handles this via the compiler.
+  // If you still have 'ReactCurrentDispatcher' errors,
+  // ensure your root node_modules isn't duplicated.
+  setupFilesAfterEnv: ['<rootDir>/src/jest-setup.ts'],
 };
 
-module.exports = createJestConfig(config);
+module.exports = createJestConfig(customJestConfig);

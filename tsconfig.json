@@ -1,25 +1,19 @@
 {
-  "compileOnSave": false,
   "extends": "./tsconfig.base.json",
+
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false
+  },
+
   "files": [],
+
   "references": [
-    {
-      "path": "./apps/dashboard-e2e"
-    },
-    {
-      "path": "./apps/dashboard"
-    },
-    {
-      "path": "./apps/packages/tokens"
-    },
-    {
-      "path": "./apps/packages/ui"
-    },
-    {
-      "path": "./apps/packages/hooks"
-    },
-    {
-      "path": "./apps/packages/api"
-    }
+    { "path": "apps/dashboard" },
+    { "path": "apps/dashboard-e2e" },
+    { "path": "apps/packages/tokens" },
+    { "path": "apps/packages/ui" },
+    { "path": "apps/packages/hooks" },
+    { "path": "apps/packages/api" }
   ]
 }

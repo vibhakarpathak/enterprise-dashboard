@@ -3,7 +3,6 @@
   "compilerOptions": {
     "jsx": "preserve",
     "noEmit": true,
-    "emitDeclarationOnly": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "lib": ["dom", "dom.iterable", "esnext", "webworker"],
@@ -16,34 +15,17 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": ["./src/*"]
-    },
     "types": ["jest", "node"],
-    "outDir": "dist",
-    "rootDir": "../../",
-    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
+    "outDir": "dist"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"],
-  "exclude": [
-    "out-tsc",
-    "dist",
-    "node_modules",
-    "jest.config.ts",
-    "jest.config.cts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts",
-    ".next",
-    "eslint.config.js",
-    "eslint.config.cjs",
-    "eslint.config.mjs"
-  ],
+  "exclude": ["node_modules", "dist", ".next", "out-tsc", "**/*.spec.ts", "**/*.test.ts"],
   "references": [
     {
-      "path": "../packages/hooks"
+      "path": "../packages/api"
     },
     {
-      "path": "../packages/api"
+      "path": "../packages/hooks"
     },
     {
       "path": "../packages/ui"

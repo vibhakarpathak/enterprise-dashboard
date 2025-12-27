@@ -20,42 +20,29 @@ interface StatGroupProps {
   isPrimary?: boolean;
 }
 
-const StatGroup = memo(
-  ({ label, value, subValue, isPrimary }: StatGroupProps) => (
-    <div className="flex flex-col gap-1">
-      <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">
-        {label}
-      </span>
-      <div
-        className={cn(
-          'flex items-baseline gap-1.5 text-2xl font-black',
-          isPrimary
-            ? 'text-[var(--color-primary)]'
-            : 'text-[var(--color-text)]',
-        )}
-      >
-        <span>{value}</span>
-        {subValue && (
-          <span className="text-xs font-bold uppercase text-muted-foreground/30">
-            {subValue}
-          </span>
-        )}
-      </div>
+const StatGroup = memo(({ label, value, subValue, isPrimary }: StatGroupProps) => (
+  <div className="flex flex-col gap-1">
+    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">
+      {label}
+    </span>
+    <div
+      className={cn(
+        'flex items-baseline gap-1.5 text-2xl font-black',
+        isPrimary ? 'text-[var(--color-primary)]' : 'text-[var(--color-text)]',
+      )}
+    >
+      <span>{value}</span>
+      {subValue && (
+        <span className="text-xs font-bold uppercase text-muted-foreground/30">{subValue}</span>
+      )}
     </div>
-  ),
-);
+  </div>
+));
 
 StatGroup.displayName = 'StatGroup';
 
 export const ActivityHeader = memo(
-  ({
-    total,
-    from,
-    to,
-    searchTerm,
-    onSearchChange,
-    onRefresh,
-  }: ActivityHeaderProps) => {
+  ({ total, from, to, searchTerm, onSearchChange, onRefresh }: ActivityHeaderProps) => {
     const [isRefreshing, setIsRefreshing] = useState(false);
     const measureRefresh = useMeasureAction('ActivityRefresh');
 
@@ -81,9 +68,7 @@ export const ActivityHeader = memo(
             onClick={handleRefresh}
             className="gap-2"
           >
-            <RotateCw
-              className={cn('h-4 w-4', isRefreshing && 'animate-spin')}
-            />
+            <RotateCw className={cn('h-4 w-4', isRefreshing && 'animate-spin')} />
             Refresh Logs
           </Button>
         </div>
@@ -91,12 +76,7 @@ export const ActivityHeader = memo(
         <div className="flex justify-between items-end gap-10">
           <div className="flex gap-12">
             <StatGroup label="Total" value={total.toLocaleString()} />
-            <StatGroup
-              label="Showing"
-              value={from}
-              subValue={`to ${to}`}
-              isPrimary
-            />
+            <StatGroup label="Showing" value={from} subValue={`to ${to}`} isPrimary />
           </div>
 
           <Input

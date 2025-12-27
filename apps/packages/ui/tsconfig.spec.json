@@ -1,10 +1,13 @@
 {
   "extends": "../../../tsconfig.base.json",
+  "composite": true,
+  "isolatedModules": true,
   "compilerOptions": {
     "outDir": "./out-tsc/jest",
     "types": ["jest", "node"],
-    "module": "nodenext",
-    "moduleResolution": "nodenext"
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "composite": true
   },
   "include": [
     "jest.config.ts",

@@ -1,32 +1,21 @@
 {
   "extends": "../../../tsconfig.base.json",
+
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
     "tsBuildInfoFile": "dist/.tsbuildinfo",
 
-    // Library-specific: only emit types
     "declaration": true,
     "declarationMap": true,
-    "emitDeclarationOnly": true,
 
-    // Required for NX project references
     "composite": true,
 
-    // Modern bundler setup
-    "moduleResolution": "bundler",
-    // Optional: let bundler decide module format
-    // "module": "esnext",
-
-    // Remove unless you import from 'fs', 'path', etc.
-    // "types": ["node"]
+    "module": "esnext",
+    "moduleResolution": "bundler"
   },
+
   "include": ["src/**/*.ts"],
-  "exclude": [
-    "jest.config.ts",
-    "jest.config.ts",
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts"
-  ],
-  "references": [] // Will be populated by NX if other libs depend on this
+
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }

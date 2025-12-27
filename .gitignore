@@ -47,5 +47,15 @@ out
 
 test-output
 
-
 storybook-static
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Package managers
+.pnpm-store
+
+# Build tools
+.turbo

@@ -1,33 +1,30 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "declarationMap": true,
-    "emitDeclarationOnly": true,
-    "importHelpers": true,
-    "isolatedModules": true,
-    "lib": ["es2022", "DOM", "DOM.Iterable"],
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+
     "module": "esnext",
     "moduleResolution": "bundler",
-    "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
+
+    "jsx": "react-jsx",
+
+    "strict": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "es2022",
-    "customConditions": ["@dashboard/source"],
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
+
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+
+    "baseUrl": ".",
     "paths": {
-      "@enterprise/api": ["./apps/packages/api/src/index.ts"],
-      "@enterprise/hooks": ["./apps/packages/hooks/src/index.ts"],
-      "@enterprise/tokens": ["./apps/packages/tokens/src/index.ts"],
-      "@enterprise/ui": ["./apps/packages/ui/src/index.ts"]      
-    },
-    "jsx": "react-jsx"
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+      "@enterprise/tokens": ["apps/packages/tokens/src/index.ts"],
+      "@enterprise/ui": ["apps/packages/ui/src/index.ts"],
+      "@enterprise/hooks": ["apps/packages/hooks/src/index.ts"],
+      "@enterprise/api": ["apps/packages/api/src/index.ts"]
+    }
+  }
 }

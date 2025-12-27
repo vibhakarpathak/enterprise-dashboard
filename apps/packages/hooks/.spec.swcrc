@@ -1,8 +1,9 @@
 {
   "jsc": {
-    "target": "es2017",
+    "target": "es2022",
     "parser": {
       "syntax": "typescript",
+      "tsx": true,
       "decorators": true,
       "dynamicImport": true
     },
@@ -15,8 +16,7 @@
     "loose": true
   },
   "module": {
-    "type": "es6"
+    "type": "esmodule"
   },
-  "sourceMaps": true,
-  "exclude": []
+  "sourceMaps": true
 }
